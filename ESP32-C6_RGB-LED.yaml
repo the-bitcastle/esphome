@@ -1,0 +1,39 @@
+# Current working Config with my ESP32-C6-WROOM1 SoC:
+  board: esp32-c6-devkitc-1
+  variant: esp32c6
+
+  framework:
+    type: esp-idf
+    platform_version: 6.5.0
+    version: 5.1.2
+    # Custom sdkconfig options
+    sdkconfig_options:
+      COMPILER_OPTIMIZATION_SIZE: y
+      CONFIG_ESPTOOLPY_FLASHSIZE_4MB: y
+esphome:
+  name: TestRGB
+
+esp32:
+  board: esp32-c6-devkitc-1
+  variant: esp32c6
+# although at time of wrting 6.6.0 and 5.2.1 were present only this setup worked with the logger
+  framework:
+    type: esp-idf
+    platform_version: 6.5.0
+    version: 5.1.2
+    # Custom sdkconfig options
+    sdkconfig_options:
+      COMPILER_OPTIMIZATION_SIZE: y
+      CONFIG_ESPTOOLPY_FLASHSIZE_4MB: y
+# Enable logging
+logger:
+
+# Enable onboard RGB-LED
+light:
+  - platform: esp32_rmt_led_strip
+    rgb_order: GRB
+    pin: 8
+    num_leds: 1
+    rmt_channel: 0
+    chipset: ws2812
+    name: "RGB"
